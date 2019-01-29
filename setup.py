@@ -9,7 +9,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='tfscc3d',
-    version='1.0.0',
+    version='1.0.1',
     description='Sequence categorial feature columns allows 3D "ID tensor" for TensorFlow',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -19,9 +19,13 @@ setup(
     license='MIT',
     packages=find_packages(),
     install_requires=[
-        'tensorflow>=1.9.0',
+        # https://github.com/tensorflow/tensorflow/issues/7166
+        # 'tensorflow>=1.9.0',
     ],
-    test_suite='nose.collector',
+    extras_require={
+        'tf_cpu': ['tensorflow>=1.9.0'],
+        'tf_gpu': ['tensorflow-gpu>=1.9.0'],
+    },    test_suite='nose.collector',
     tests_require=['nose'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
